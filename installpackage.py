@@ -2,33 +2,22 @@ import os
 import sys
 import subprocess
 
-def main1():
+def main():
     print("install package in script")
 
+def install_pip():
+    print('start install package_pip')
+    cmd = 'pip3 install -r requirements.txt'
+    pip = subprocess.check_output(cmd, shell=True)
+    print(pip)
+
 def install_package():
-    sudopassword='9121170207'
-    sudo1=subprocess.Popen(['sudo -s'],shell=True, stdout=subprocess.PIPE)
-    sudo1.communicate()
-
-    pass1=subprocess.Popen(sudopassword,shell=True,stdout=subprocess.PIPE)
-    pass1.communicate()
-
-    process=subprocess.Popen(['sudo apt-get update'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
-    disk=process.communicate()
-    print(disk)
-
-def accses_root():
-    echo = subprocess.Popen(['echo', '9121170207'],
-                            stdout=subprocess.PIPE,
-                            )
-
-    sudo = subprocess.Popen(['sudo -s apt-get update'],
-                            stdin=echo.stdout,
-                            stdout=subprocess.PIPE,shell=True
-                            )
-
+    print('start install package')
+    cmd = ['apt-get update']
+    package = subprocess.check_output(cmd,shell=True)
+    print(package)
 
 if __name__=="__main__":
-    main1()
-    #install_package()
-    accses_root()
+    main()
+    install_package()
+    install_pip()
